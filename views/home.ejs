@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <link rel="stylesheet" href="/css/app.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" integrity="sha512-XyIHw85XE9I8uFT0J6ZTX7e5yl8AN5N7KZVoGGVo+dMCqel1g5je8m++ocg7QH9JvFXUMhl2HEIVp19GyOmOXA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Product List</h2>
+        <a href="?sortBy=ProductStoreCode" class="btn btn-primary mb-3">
+            Sort by Product Store Code <i class="bi bi-sort-down"></i>
+        </a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#id</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Product Code</th>
+                    <th scope="col">Product Date</th>
+                    <th scope="col">Product Origin Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Product Store Code</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(product => { %>
+                <tr>
+                    <th scope="row"><%= product._id %></th>
+                    <td><%= product.ProductName %></td>
+                    <td><%= product.ProductCode %></td>
+                    <td><%= product.ProductDate.toDateString() %></td>
+                    <td><%= product.ProductOriginPrice %></td>
+                    <td><%= product.Quantity %></td>
+                    <td><%= product.ProductStoreCode %></td>
+                    <td>
+                        <a href="/edit/<%= product._id %>" class="btn btn-primary btn-sm me-1">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a href="/delete/<%= product._id %>" class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <a href="/create" class="btn btn-success btn-sm">
+            <i class="bi bi-plus-square"></i> Create
+        </a>
+    </div>
+</body>
+</html>
